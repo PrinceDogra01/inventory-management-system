@@ -47,32 +47,7 @@ docker compose up --build
 # API Docs: http://localhost:8000/docs
 ```
 
-### Run Locally (Development)
 
-**Backend:**
-```bash
-cd backend
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
-pip install -r requirements.txt
-
-# Set database URL
-export DATABASE_URL=postgresql://postgres:postgres@localhost:5432/inventory_db
-
-uvicorn app.main:app --reload --port 8000
-```
-
-**Frontend:**
-```bash
-cd frontend
-npm install
-
-# Set API URL
-echo "VITE_API_URL=http://localhost:8000" > .env
-
-npm run dev
-# Open http://localhost:3000
-```
 
 ## 📡 API Endpoints
 
@@ -188,11 +163,3 @@ inventory-system/
 └── README.md
 ```
 
-## 🐳 Docker Hub
-
-Push backend image:
-```bash
-docker build -t yourusername/inventory-backend:latest ./backend
-docker login
-docker push yourusername/inventory-backend:latest
-```
