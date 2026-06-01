@@ -23,7 +23,7 @@ export default function Customers() {
   const load = () => {
     setLoading(true)
     customersApi.getAll()
-      .then(setCustomers)
+  .then(data => setCustomers(Array.isArray(data) ? data : []))
       .catch(e => toast.error(e.message))
       .finally(() => setLoading(false))
   }

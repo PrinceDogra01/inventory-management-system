@@ -22,8 +22,8 @@ export default function Products() {
 
   const load = () => {
     setLoading(true)
-    productsApi.getAll()
-      .then(setProducts)
+   productsApi.getAll()
+  .then(data => setProducts(Array.isArray(data) ? data : []))
       .catch(e => toast.error(e.message))
       .finally(() => setLoading(false))
   }

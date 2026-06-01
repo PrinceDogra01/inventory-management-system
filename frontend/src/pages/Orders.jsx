@@ -33,7 +33,11 @@ export default function Orders() {
   const load = () => {
     setLoading(true)
     Promise.all([ordersApi.getAll(), customersApi.getAll(), productsApi.getAll()])
-      .then(([o, c, p]) => { setOrders(o); setCustomers(c); setProducts(p) })
+   .then(([o, c, p]) => {
+  setOrders(Array.isArray(o) ? o : [])
+  setCustomers(Array.isArray(c) ? c : [])
+  setProducts(Array.isArray(p) ? p : [])
+})
       .catch(e => toast.error(e.message))
       .finally(() => setLoading(false))
   }
@@ -95,10 +99,12 @@ export default function Orders() {
     }
   }
 
-  const filtered = orders.filter(o =>
-    `#${o.id}`.includes(search) ||
-    o.customer?.name?.toLowerCase().includes(search.toLowerCase())
-  )
+const filtered = Array.isArray(orders)
+  ? orders.filter(o =>
+      `#${o.id}`.includes(search) ||
+      o.customer?.name?.toLowerCase().includes(search.toLowerCase())
+    )
+  : []
 
   return (
     <div className="space-y-5 fade-in">
