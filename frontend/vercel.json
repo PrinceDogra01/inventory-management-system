@@ -16,7 +16,7 @@
     }
   ],
   "env": {
-    "VITE_API_URL": "@inventory-api-url"
+    "VITE_API_URL": "https://inventory-management-system-du5d.onrender.com"
   },
   "headers": [
     {
